@@ -1,0 +1,24 @@
+
+<!-- add-event.hbs -->
+<form action="/add-event" method="post">
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title">
+  </div>
+  <div>
+    <label for="start_time">Start Time:</label>
+    <input type="datetime-local" id="start_time" name="start_time">
+  </div>
+  <!-- <div>
+    <label for="end_time">End Time:</label>
+    <input type="datetime-local" id="end_time" name="end_time">
+  </div> -->
+  <select name="appointment" id="appointment">
+    <option value="Albire dentara">Albire dentara</option>
+    <option value="Extractie molar">Extractie molar</option>
+    <option value="Detartraj">Detartraj</option>
+    <option value="Extractie nerv">Extractie nerv</option>
+  </select>
+  <button type="submit">Add Event</button>
+</form>
+

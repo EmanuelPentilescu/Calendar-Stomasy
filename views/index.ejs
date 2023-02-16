@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>welcome to my calendar</h1>
+
+        <form action="/" method="get">
+            <!-- <input type="number" placeholder="search year" name="year"> -->
+            <select name="year" id="year" >
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+            </select>
+            <select name="monthName" id="monthName">
+                <option value="Ianuarie">Ianuarie</option>
+                <option value="Februarie">Februarie</option>
+                <option value="Martie">Martie</option>
+                <option value="Aprilie">Aprilie</option>
+                <option value="Mai">Mai</option>
+                <option value="Iunie">Iunie</option>
+                <option value="Iulie">Iulie</option>
+                <option value="August">August</option>
+                <option value="Septembrie">Septembrie</option>
+                <option value="Octombrie">Octombrie</option>
+                <option value="Noiembrie">Noiembrie</option>
+                <option value="Decembrie">Decembrie</option>
+              </select> 
+            <!-- <input type="text" placeholder="search by month" name="monthName" style="text-align: center;"> -->
+            <button type="submit">search</button>
+        </form>
+        <h2>Luna: <%= monthName%></h2>
+        <h2>year <%= year %></h2>
+    </header>
+
+        
+    <div class="calendar-container">
+        <% for(let month = 0;month < calendar.length;month++) { %>
+           <% if(monthName === months[month]) { %>
+        <div class="month-container" id="<%= months[month] %>">
+            <h3 style="text-align: center;"> <%= months[month] %> </h3>
+
+            <div class="day-of-week">
+                <span>Duminica</span><span>Luni</span><span>Marti</span><span>
+                    Miercuri</span><span>Joi</span><span>Vineri</span><span>Sambata</span>
+            </div>
+            <% for(let x = 0;x < calendar[month].length;x++) { %>
+            <div class="days">
+                <% for(let y = 0;y < calendar[month][x].length;y++) { %>
+                    <% let check= true %>
+                    <%  for(event in events) { %>
+                        <% var date= new Date(events[event].start_time) %>
+                        <% if(date.getFullYear()===parseInt(year) && date.getDate()===parseInt(calendar[month][x][y]) && date.getMonth()===month) {%>
+                            <% check=false %>
+                        <tr>
+                          <td><%= calendar[month][x][y] %></td>
+                          
+                          <td><%= events[event].title %></td>
+                          <td><%=events[event].appointment%></td>
+                          <td><%= new Date(events[event].start_time).getDate()%>/<%= new Date(events[event].start_time).getMonth() +1%>/<%= new Date(events[event].start_time).getFullYear()%>: <%= new Date(events[event].start_time).getHours()%>:<%= new Date(events[event].start_time).getMinutes()%> </td>
+                          <td><%= new Date(events[event].end_time).getDate()%>/<%= new Date(events[event].end_time).getMonth() +1%>/<%= new Date(events[event].end_time).getFullYear()%>: <%= new Date(events[event].end_time).getHours()%>:<%= new Date(events[event].end_time).getMinutes()%>  </td>
+                        </tr>
+                        <% } %>
+                      <% } %>
+                      <%if(check) { %>
+                            <div class="date">
+                                <div id="<%=calendar[month][x][y] %>">
+                                    <%= calendar[month][x][y] %>
+                                </div>
+                            </div>
+                       <% } %>
+                <% } %>
+            </div>
+            <% } %>
+        </div>
+            <% } %>
+        <% } %>
+    </div>
+
+</body>
+
+</html>

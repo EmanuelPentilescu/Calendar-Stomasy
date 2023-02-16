@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calendar</title>
+</head>
+<body>
+  <h1>Calendar</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Start</th>
+        <th>End</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%  for(event in events) { %>
+        <tr>
+          <td><%= events[event].title %></td>
+          <td><%= new Date(events[event].start_time).getDate()%>/<%= new Date(events[event].start_time).getMonth() +1%>/<%= new Date(events[event].start_time).getFullYear()%>: <%= new Date(events[event].start_time).getHours()%>:<%= new Date(events[event].start_time).getMinutes()%> </td>
+          <td><%= new Date(events[event].end_time).getDate()%>/<%= new Date(events[event].end_time).getMonth() +1%>/<%= new Date(events[event].end_time).getFullYear()%>: <%= new Date(events[event].end_time).getHours()%>:<%= new Date(events[event].end_time).getMinutes()%>  </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</body>
+</html>
+
+
+
+
+
+
+ <!-- <!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.1/index.global.min.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'resourceTimelineWeek'
+        });
+        calendar.render();
+      });
+      
+    </script>
+  </head>
+  <body>
+    <div id='calendar'></div>
+  </body>
+</html> -->
